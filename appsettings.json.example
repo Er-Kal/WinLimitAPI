@@ -1,0 +1,15 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection":"User Id=;Password=;;Port=6543;Database=postgres;SSL Mode=Require;Trust Server Certificate=true;Timeout=300;Command Timeout=300;KeepAlive=30;Pooling=false"
+  },
+  "JwtSettings" : {
+    "SecretKey" : "JWT Key Here"
+  }
+}
