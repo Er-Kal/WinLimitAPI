@@ -43,7 +43,7 @@ public class BlockItemController : ControllerBase
     [HttpGet("latest")]
     public async Task<ActionResult<IEnumerable<BlockItem>>> GetLatestBlockItems([FromQuery] int count = 20)
     {
-        var blocks = await _blockItemsCollection.Find(_ => true).SortByDescending(b => b.id).Limit(count).ToListAsync();
+        var blocks = await _blockItemsCollection.Find(_ => true).SortByDescending(b => b.Id).Limit(count).ToListAsync();
 
         return Ok(blocks);
     }
