@@ -27,17 +27,16 @@ public class BlockItemController : ControllerBase
         var blocks = await _blockItemsCollection.Find(n => true).ToListAsync();
         return Ok(blocks);
     }
-    /*
-    [HttpPost]
-    public async Task<ActionResult<BlockItem>> PostBlock(BlockItem blockItem)
-    {
-        if (blockItem.TimeAdded == default)
-        {
-            blockItem.TimeAdded = DateTime.UtcNow;
-        }
-        _context.BlockItems.Add(blockItem);
-        await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetBlocks), new {id=blockItem.Id}, blockItem);
-    }*/
+    // POST: /api/block
+    [HttpPost]
+    public async Task<ActionResult<BlockItem>> CreateBlock([FromBody] BlockItem blockItem)
+    {
+        if (blockItem == null)
+            return BadRequest("Block item cannot be null.");
+
+        await _blockItemsCollection.InsertOneAsync(blockItem);
+
+        return CreatedAtAction(nameof(GetBlocks), new { id = blockItem.Id }, blockItem);
+    }
 }

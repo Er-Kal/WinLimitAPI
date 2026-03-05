@@ -1,6 +1,14 @@
-@WinLimitAPI_HostAddress = http://localhost:5226
+@WinLimitAPI_HostAddress = https://localhost:7266
 
-GET {{WinLimitAPI_HostAddress}}/weatherforecast/
-Accept: application/json
+POST {{WinLimitAPI_HostAddress}}/api/blockitem
+Content-Type: application/json
+
+{
+    "friendlyName":"Notepad",
+    "executableName":"notepad",
+    "description": "Notepad application, test reason"
+}
 
 ###
+GET {{WinLimitAPI_HostAddress}}/api/blockitem
+Content-Type: application/json

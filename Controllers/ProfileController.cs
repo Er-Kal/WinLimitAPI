@@ -53,6 +53,18 @@ public class ProfileController : ControllerBase
         {
             updates.Add(updateBuilder.Set(p => p.BlockedAppsSettings, patchDoc.BlockedApps));
         }
+
+        if (updates.Count == 0)
+        {
+            return BadRequest("No fields were provided to update");
+        }
+
+        var combinedUpdate = updateBuilder.Combine(updates);
+
+        var options = new UpdateOptions{IsUpsert=true};
+
+        return Ok(new {Message = "Profile updated successfully"});
+        
     }
 }
 
