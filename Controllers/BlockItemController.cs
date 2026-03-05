@@ -28,7 +28,7 @@ public class BlockItemController : ControllerBase
         return Ok(blocks);
     }
 
-    // POST: /api/block
+    // POST: /api/blockitem
     [HttpPost]
     public async Task<ActionResult<BlockItem>> CreateBlock([FromBody] BlockItem blockItem)
     {

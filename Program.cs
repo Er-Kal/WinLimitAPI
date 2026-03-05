@@ -7,8 +7,10 @@ using System.Text;
 using MongoDB.Driver;
 using AspNetCore.Identity.MongoDbCore.Models;
 
-
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 var builder = WebApplication.CreateBuilder(args);
+
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
