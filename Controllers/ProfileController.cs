@@ -64,7 +64,6 @@ public class ProfileController : ControllerBase
         var options = new UpdateOptions{IsUpsert=true};
 
         return Ok(new {Message = "Profile updated successfully"});
-        
     }
 }
 

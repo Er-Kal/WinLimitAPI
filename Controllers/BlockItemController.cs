@@ -20,7 +20,7 @@ public class BlockItemController : ControllerBase
         _blockItemsCollection = database.GetCollection<BlockItem>("BlockItems");
     }
 
-    // GET: /api/block
+    // GET: /api/blockitem
     [HttpGet]
     public async Task<ActionResult<IEnumerable<BlockItem>>> GetBlocks()
     {
@@ -38,5 +38,13 @@ public class BlockItemController : ControllerBase
         await _blockItemsCollection.InsertOneAsync(blockItem);
 
         return CreatedAtAction(nameof(GetBlocks), new { id = blockItem.Id }, blockItem);
+    }
+
+    [HttpGet("latest")]
+    public async Task<ActionResult<IEnumerable<BlockItem>>> GetLatestBlockItems([FromQuery] int count = 20)
+    {
+        var blocks = await _blockItemsCollection.Find(_ => true).SortByDescending(b => b.id).Limit(count).ToListAsync();
+
+        return Ok(blocks);
     }
 }
