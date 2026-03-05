@@ -17,7 +17,11 @@ builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
 builder.Services.AddOpenApi();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = null;
+    });
 
 // MongoDB settings from app settings
 string mongoConnectionString = builder.Configuration.GetConnectionString("MongoConnection");
