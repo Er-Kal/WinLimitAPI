@@ -63,6 +63,8 @@ public class ProfileController : ControllerBase
 
         var options = new UpdateOptions{IsUpsert=true};
 
+        await _profileCollection.UpdateOneAsync(filter, combinedUpdate, options);
+
         return Ok(new {Message = "Profile updated successfully"});
     }
 }
