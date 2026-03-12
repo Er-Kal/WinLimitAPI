@@ -37,8 +37,6 @@ public class ProfileController : ControllerBase
         User? user = await _userManager.GetUserAsync(User);
         if (user == null) return Unauthorized();
 
-
-        // Filter to apply to upsert
         var filter = Builders<Profile>.Filter.Eq(p => p.UserId, user.Id);
 
         var updateBuilder = Builders<Profile>.Update;

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -48,6 +49,17 @@ public class AuthController : ControllerBase
             return Ok(new {token});
         }
         return Unauthorized();
+    }
+
+    [HttpGet("me")]
+    [Authorize]
+    public async Task<IActionResult> GetCurrentUser()
+    {
+        var user = User.FindFirstValue(ClaimTypes.Name);
+
+        if (user== null) return NotFound();
+
+        return Ok(new {Email = user});
     }
 
     private string GenerateJwtToken(User user)
